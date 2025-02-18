@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Procesador de Excel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 50px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .upload-form {
+            border: 2px dashed #ccc;
+            padding: 30px;
+            border-radius: 10px;
+            background: #f9f9f9;
+        }
+        .error {
+            color: red;
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid red;
+            border-radius: 5px;
+            background-color: #ffe6e6;
+        }
+        .btn {
+            background: #1B293F;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .btn:hover {
+            background: #2C3E50;
+        }
+        .file-input {
+            margin: 20px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 80%;
+        }
+    </style>
+    <script>
+        function validateForm() {
+            const fileInput = document.querySelector('input[type="file"]');
+            if (!fileInput.value) {
+                alert('Por favor selecciona un archivo');
+                return false;
+            }
+            return true;
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1>Procesador de Archivos Excel</h1>
+        
+        <div class="upload-form">
+            <form method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
+                <input type="file" name="file" accept=".xlsx,.xls" class="file-input" required>
+                <br><br>
+                <button type="submit" class="btn">Procesar Archivo</button>
+            </form>
+        </div>
+
+        {% if error %}
+            <div class="error">
+                <strong>Error:</strong> {{ error }}
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>

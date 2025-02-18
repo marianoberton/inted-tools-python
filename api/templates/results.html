@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Resultados del Análisis</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        {% if error %}
+            <div class="error">{{ error }}</div>
+            <a href="/" class="btn">Volver</a>
+        {% else %}
+            <h1>Resultados del Análisis</h1>
+            
+            <div class="grid">
+                <div class="card">
+                    <h2>Heatmap Global</h2>
+                    <img src="{{ url_for('view_file', filename=heatmap) }}" alt="Heatmap Global">
+                    <a href="{{ url_for('download_file', filename=heatmap) }}" class="btn">Descargar</a>
+                </div>
+
+                <div class="card">
+                    <h2>Heatmap del Cliente</h2>
+                    <img src="{{ url_for('view_file', filename=client_heatmap) }}" alt="Heatmap del Cliente">
+                    <a href="{{ url_for('download_file', filename=client_heatmap) }}" class="btn">Descargar</a>
+                </div>
+
+                <div class="card">
+                    <h2>Distribución de Ranking</h2>
+                    <img src="{{ url_for('view_file', filename=bar_chart) }}" alt="Distribución de Ranking">
+                    <a href="{{ url_for('download_file', filename=bar_chart) }}" class="btn">Descargar</a>
+                </div>
+            </div>
+
+            <div class="download-all">
+                <a href="{{ url_for('download_file', filename=excel) }}" class="btn primary">
+                    Descargar Excel Completo
+                </a>
+            </div>
+
+            <a href="/" class="btn">Analizar otro archivo</a>
+        {% endif %}
+    </div>
+</body>
+</html>
